@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const links = [
   { href: "/", label: "الرئيسية" },
@@ -21,11 +23,13 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto mt-3 w-full max-w-6xl px-4 sm:px-6">
         <nav className="glass-strong flex items-center justify-between rounded-full px-4 py-2.5 sm:px-6">
-          <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-rose-400 to-rose-600 text-lg font-bold text-white shadow-glow-sm">
-              ل
-            </span>
-            <span className="font-display text-2xl font-bold gradient-text">لولو</span>
+          <Link href="/" className="flex items-center" onClick={() => setOpen(false)} aria-label="لولو — الرئيسية">
+            <Image
+              src={logo}
+              alt="لولو"
+              priority
+              className="h-9 w-auto sm:h-11"
+            />
           </Link>
 
           <ul className="hidden items-center gap-1 md:flex">
