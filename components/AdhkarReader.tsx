@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Dhikr } from "@/data/adhkar";
 import { useLocalStorage, todayKey } from "@/lib/useLocalStorage";
+import { useSettings, toggleSetting } from "@/lib/useSettings";
+import { useFeedback } from "@/lib/useFeedback";
+import ShareButtons from "@/components/ShareButtons";
 import { Moon, Sun, RotateCcw, Check, Repeat } from "lucide-react";
 
 export default function AdhkarReader({
@@ -21,15 +24,8 @@ export default function AdhkarReader({
     `lulu:adhkar:${type}:${todayKey()}`,
     {}
   );
-  const [night, setNight] = useLocalStorage<boolean>("lulu:nightMode", false);
-
-  // Toggle the global night-mode class on <html>.
-  useEffect(() => {
-    const el = document.documentElement;
-    if (night) el.classList.add("night-mode");
-    else el.classList.remove("night-mode");
-    return () => el.classList.remove("night-mode");
-  }, [night]);
+  const { night } = useSettings();
+  const feedback = useFeedback();
 
   const completed = useMemo(
     () => items.filter((d) => (counts[d.id] ?? 0) >= d.count).length,
@@ -41,9 +37,9 @@ export default function AdhkarReader({
     setCounts((c) => {
       const cur = c[d.id] ?? 0;
       if (cur >= d.count) return c;
-      const next = { ...c, [d.id]: cur + 1 };
-      return next;
+      return { ...c, [d.id]: cur + 1 };
     });
+    feedback();
   };
   const reset = (id: string) => setCounts((c) => ({ ...c, [id]: 0 }));
   const resetAll = () => setCounts({});
@@ -58,7 +54,7 @@ export default function AdhkarReader({
         </div>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setNight((n) => !n)}
+            onClick={() => toggleSetting("night")}
             className="flex items-center gap-1.5 rounded-full bg-white/50 px-4 py-2 text-sm font-medium text-rose-700 transition-colors hover:bg-white/70"
           >
             {night ? <Sun size={15} /> : <Moon size={15} />}
@@ -128,7 +124,8 @@ export default function AdhkarReader({
 
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center gap-2 text-xs font-medium text-rose-400">
-                  {d.source && <span>{d.source}</span>}
+                  <ShareButtons text={d.text} source={d.source} />
+                  {d.source && <span className="hidden sm:inline">{d.source}</span>}
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="flex items-center gap-1 text-xs text-rose-500">

@@ -17,9 +17,9 @@ export const sections: Section[] = [
   { href: "/adhkar/evening", title: "أذكار المساء", desc: "اختمي يومكِ بذكر الله", icon: "moon", group: "worship", ready: true },
   { href: "/tasbih", title: "المسبحة الإلكترونية", desc: "سبّحي واحمدي وكبّري بلمسة", icon: "infinity", group: "worship", ready: true },
   { href: "/ruqyah", title: "الرقية الشرعية", desc: "رقية كاملة مقسّمة بالموضوع", icon: "shield-plus", group: "worship" },
-  { href: "/quran-wird", title: "ورد القرآن", desc: "صفحة، حزب، أو جزء مع متابعة", icon: "book-open", group: "worship" },
+  { href: "/quran-wird", title: "ورد القرآن", desc: "صفحة، حزب، أو جزء مع متابعة", icon: "book-open", group: "worship", ready: true },
   { href: "/khatmah", title: "ختمة القرآن", desc: "خطة ختمة بشريط تقدّم", icon: "book-marked", group: "worship" },
-  { href: "/duas", title: "مكتبة الأدعية", desc: "أدعية مرتبة حسب المناسبات", icon: "hands-praying", group: "worship" },
+  { href: "/duas", title: "مكتبة الأدعية", desc: "أدعية مرتبة حسب المناسبات", icon: "hand-heart", group: "worship", ready: true },
 
   // التنظيم
   { href: "/tasks", title: "مهام اليوم", desc: "قائمة عباداتكِ وعاداتكِ اليومية", icon: "list-checks", group: "organize", ready: true },

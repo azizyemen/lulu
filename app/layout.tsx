@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Tajawal, El_Messiri, Amiri } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const tajawal = Tajawal({
   subsets: ["arabic"],
@@ -44,12 +45,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl" className={`${tajawal.variable} ${messiri.variable} ${amiri.variable}`}>
+      <head>
+        {/* Apply saved night mode before paint to avoid a flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var s=JSON.parse(localStorage.getItem('lulu:settings')||'{}');if(s.night)document.documentElement.classList.add('night-mode')}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <div className="aurora" aria-hidden />
         <Navbar />
-        <main className="mx-auto w-full max-w-6xl px-4 pb-24 pt-24 sm:px-6">
+        <main className="mx-auto w-full max-w-6xl px-4 pb-20 pt-24 sm:px-6">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

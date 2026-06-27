@@ -45,7 +45,17 @@ export default function PrayerTimesCard() {
         </div>
       )}
 
-      {loading && <p className="py-6 text-center text-sm text-rose-600/70">جارٍ تحديد المواقيت…</p>}
+      {loading && (
+        <div aria-live="polite" aria-busy="true">
+          <span className="sr-only">جارٍ تحديد المواقيت…</span>
+          <div className="mb-4 skeleton h-[68px] rounded-2xl" aria-hidden />
+          <ul className="grid grid-cols-2 gap-2">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <li key={i} className="skeleton h-[38px] rounded-xl" aria-hidden />
+            ))}
+          </ul>
+        </div>
+      )}
       {error && <p className="py-6 text-center text-sm text-rose-600/70">تعذّر جلب المواقيت، حاولي لاحقًا.</p>}
 
       {!loading && !error && (

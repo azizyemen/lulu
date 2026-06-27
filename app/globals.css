@@ -122,6 +122,27 @@ body {
     animation: shimmer 6s linear infinite;
   }
 
+  /* Skeleton loading shimmer */
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background: rgba(193, 122, 145, 0.12);
+  }
+  .skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    animation: skeleton-sweep 1.6s ease-in-out infinite;
+  }
+  .night-mode .skeleton {
+    background: rgba(227, 168, 183, 0.12);
+  }
+  .night-mode .skeleton::after {
+    background: linear-gradient(90deg, transparent, rgba(227, 168, 183, 0.18), transparent);
+  }
+
   /* Light sweep on hover for cards/tiles */
   .shine {
     position: relative;
@@ -147,6 +168,10 @@ body {
 @keyframes shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+@keyframes skeleton-sweep {
+  100% { transform: translateX(100%); }
 }
 
 /* Respect users who prefer less motion */

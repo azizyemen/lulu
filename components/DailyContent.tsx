@@ -1,7 +1,8 @@
 "use client";
 
 import { ayat, ahadith, adiya, hikam, quotes, pickForToday } from "@/data/daily";
-import { BookOpen, MessageSquareQuote, HandHeart, Lightbulb, Quote, Lightbulb as Bulb } from "lucide-react";
+import ShareButtons from "@/components/ShareButtons";
+import { BookOpen, MessageSquareQuote, HandHeart, Lightbulb, Quote } from "lucide-react";
 
 export default function DailyContent() {
   const ayah = pickForToday(ayat);
@@ -28,6 +29,9 @@ export default function DailyContent() {
               <span className="font-bold text-rose-600">تأمّل: </span>
               {ayah.tafsir}
             </p>
+          </div>
+          <div className="mt-4">
+            <ShareButtons text={ayah.text} source={`سورة ${ayah.surah}`} />
           </div>
         </div>
       </article>
@@ -76,7 +80,10 @@ function SmallCard({
         {icon} {label}
       </span>
       <p className="flex-1 leading-relaxed text-rose-800">{body}</p>
-      {meta && <p className="mt-3 text-xs font-medium text-rose-400">{meta}</p>}
+      <div className="mt-3 flex items-center justify-between">
+        <ShareButtons text={body} source={meta} />
+        {meta && <p className="text-xs font-medium text-rose-400">{meta}</p>}
+      </div>
     </article>
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { tasbihItems } from "@/data/tasks";
 import { useLocalStorage } from "@/lib/useLocalStorage";
+import { useFeedback } from "@/lib/useFeedback";
 import { RotateCcw, Check } from "lucide-react";
 
 export default function TasbihPage() {
@@ -17,10 +18,11 @@ export default function TasbihPage() {
   const r = 120;
   const circ = 2 * Math.PI * r;
 
+  const feedback = useFeedback();
   const tap = () => {
     setCounts((c) => ({ ...c, [activeId]: (c[activeId] ?? 0) + 1 }));
     setTotal((t) => t + 1);
-    if (typeof navigator !== "undefined" && navigator.vibrate) navigator.vibrate(12);
+    feedback();
   };
   const resetActive = () => setCounts((c) => ({ ...c, [activeId]: 0 }));
 
