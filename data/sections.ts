@@ -13,6 +13,7 @@ export type Section = {
 
 export const sections: Section[] = [
   // العبادات
+  { href: "/quran", title: "المصحف الشريف", desc: "اقرئي القرآن صفحة بصفحة بالتفسير والتلاوة", icon: "book-open-text", group: "worship", ready: true },
   { href: "/adhkar/morning", title: "أذكار الصباح", desc: "وردكِ الصباحي بعدّاد ووضع قراءة", icon: "sunrise", group: "worship", ready: true },
   { href: "/adhkar/evening", title: "أذكار المساء", desc: "اختمي يومكِ بذكر الله", icon: "moon", group: "worship", ready: true },
   { href: "/tasbih", title: "المسبحة الإلكترونية", desc: "سبّحي واحمدي وكبّري بلمسة", icon: "infinity", group: "worship", ready: true },

@@ -10,6 +10,7 @@ import SearchModal from "@/components/SearchModal";
 
 const links = [
   { href: "/", label: "الرئيسية" },
+  { href: "/quran", label: "المصحف" },
   { href: "/adhkar/morning", label: "أذكار الصباح" },
   { href: "/adhkar/evening", label: "أذكار المساء" },
   { href: "/tasbih", label: "المسبحة" },

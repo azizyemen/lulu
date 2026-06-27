@@ -110,6 +110,29 @@ body {
     @apply inline-flex items-center gap-1.5 rounded-full bg-rose-100/70 px-3 py-1 text-xs font-medium text-rose-700;
   }
 
+  /* End-of-ayah rosette marker with the ayah number */
+  .ayah-marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 0.15em;
+    font-size: 0.62em;
+    font-family: var(--font-tajawal), sans-serif;
+    color: #ab6079;
+    background:
+      radial-gradient(circle, rgba(231, 201, 160, 0.35) 0%, transparent 70%),
+      rgba(193, 122, 145, 0.1);
+    border: 1px solid rgba(217, 179, 128, 0.6);
+    border-radius: 9999px;
+    vertical-align: middle;
+  }
+  .night-mode .ayah-marker {
+    color: #e7c9a0;
+    border-color: rgba(231, 201, 160, 0.4);
+  }
+
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-rose-200/80 bg-white/50 px-6 py-3 font-medium text-rose-700 backdrop-blur-sm transition-all duration-300;
   }
