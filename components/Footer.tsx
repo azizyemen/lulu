@@ -35,7 +35,7 @@ export default function Footer() {
       <h2 id="footer-heading" className="sr-only">
         تذييل الموقع
       </h2>
-      <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
+      <div className="mx-auto w-full max-w-6xl px-4 pb-32 pt-12 sm:px-6 md:pb-12">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_2fr]">
           {/* Brand */}
           <div>

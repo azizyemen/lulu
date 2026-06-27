@@ -3,6 +3,7 @@
 import { useDailyTasks } from "@/lib/useDailyTasks";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import CountUp from "@/components/CountUp";
 
 export default function AchievementsRing() {
   const { completed, total, ready } = useDailyTasks();
@@ -46,7 +47,9 @@ export default function AchievementsRing() {
           </defs>
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="font-display text-3xl font-bold text-rose-700">{ready ? pct : 0}%</span>
+          <span className="font-display text-3xl font-bold text-rose-700">
+            <CountUp value={ready ? pct : 0} />%
+          </span>
           <span className="text-xs text-rose-500">{completed} من {total}</span>
         </div>
       </div>

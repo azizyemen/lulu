@@ -3,6 +3,8 @@ import { Tajawal, El_Messiri, Amiri } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BottomNav from "@/components/BottomNav";
+import BackToTop from "@/components/BackToTop";
 
 const tajawal = Tajawal({
   subsets: ["arabic"],
@@ -60,6 +62,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <BackToTop />
+        <BottomNav />
       </body>
     </html>
   );
