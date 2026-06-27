@@ -71,8 +71,24 @@ export async function getByPage(n: number): Promise<Ayah[]> {
 }
 
 export async function getBySurah(n: number): Promise<Ayah[]> {
-  const d = await cached<{ ayahs: Ayah[] }>(`/surah/${n}/quran-uthmani`, `lulu:q:surah:${n}`);
-  return d.ayahs;
+  // The /surah endpoint puts surah info at the top level (not per ayah), so we
+  // attach it to each ayah to match the shape the reader expects.
+  const d = await cached<{
+    number: number;
+    name: string;
+    englishName: string;
+    revelationType: string;
+    numberOfAyahs: number;
+    ayahs: Ayah[];
+  }>(`/surah/${n}/quran-uthmani`, `lulu:q:surah:${n}`);
+  const surah = {
+    number: d.number,
+    name: d.name,
+    englishName: d.englishName,
+    revelationType: d.revelationType,
+    numberOfAyahs: d.numberOfAyahs,
+  };
+  return d.ayahs.map((a) => ({ ...a, surah }));
 }
 
 export async function getByJuz(n: number): Promise<Ayah[]> {

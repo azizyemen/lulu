@@ -28,17 +28,17 @@ export default function MushafReader({ ayahs }: { ayahs: Ayah[] }) {
         >
           {ayahs.map((a, i) => {
             const prev = ayahs[i - 1];
-            const newSurah = !prev || prev.surah.number !== a.surah.number;
+            const newSurah = !prev || prev.surah?.number !== a.surah?.number;
             const isSelected = selected?.number === a.number;
             return (
               <Fragment key={a.number}>
-                {newSurah && <SurahHeader ayah={a} />}
+                {newSurah && a.surah && <SurahHeader ayah={a} />}
                 <span
                   role="button"
                   tabIndex={0}
                   onClick={() => open(a)}
                   onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && open(a)}
-                  aria-label={`الآية ${a.numberInSurah} من ${a.surah.name}`}
+                  aria-label={`الآية ${a.numberInSurah}${a.surah ? " من " + a.surah.name : ""}`}
                   className={`cursor-pointer rounded-lg px-1 transition-colors duration-200 hover:bg-rose-100/70 ${
                     isSelected ? "bg-rose-200/70" : ""
                   }`}
