@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fadhkar\u002F[type]","\u002Fquran\u002Fjuz\u002F[juzNumber]","\u002Fquran\u002Fpages\u002F[pageNumber]","\u002Fquran\u002Fsurah\u002F[surahNumber]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
