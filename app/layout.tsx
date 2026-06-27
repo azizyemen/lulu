@@ -22,11 +22,13 @@ const amiri = Amiri({
   display: "swap",
 });
 
+const basePath = process.env.NODE_ENV === "production" ? "/lulu" : "";
+
 export const metadata: Metadata = {
   title: "لولو · رفيقتكِ اليومية إلى الله",
   description:
     "منصة نسائية إسلامية عصرية: أذكار، قرآن، تسبيح، مهام، وتأمل — رفيقتكِ اليومية للتقرّب إلى الله والاعتناء بنفسكِ.",
-  manifest: "/manifest.json",
+  manifest: `${basePath}/manifest.json`,
 };
 
 export const viewport: Viewport = {
