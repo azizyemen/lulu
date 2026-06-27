@@ -102,6 +102,66 @@ body {
   .chip {
     @apply inline-flex items-center gap-1.5 rounded-full bg-rose-100/70 px-3 py-1 text-xs font-medium text-rose-700;
   }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-rose-200/80 bg-white/50 px-6 py-3 font-medium text-rose-700 backdrop-blur-sm transition-all duration-300;
+  }
+  .btn-ghost:hover {
+    @apply bg-white/80 text-rose-800;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -12px rgba(171, 96, 121, 0.4);
+  }
+
+  /* Animated gradient text (shimmering sheen) */
+  .gradient-text-shimmer {
+    background: linear-gradient(100deg, #ab6079 0%, #c17a91 25%, #e3a8b7 45%, #c99a5e 60%, #c17a91 80%, #ab6079 100%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
+
+  /* Light sweep on hover for cards/tiles */
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    transform: skewX(-18deg);
+    transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+  .shine:hover::after {
+    left: 130%;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .aurora::before,
+  .aurora::after {
+    animation: none !important;
+  }
 }
 
 /* Custom scrollbar */

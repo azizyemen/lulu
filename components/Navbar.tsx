@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 
@@ -18,17 +18,35 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="mx-auto mt-3 w-full max-w-6xl px-4 sm:px-6">
-        <nav className="glass-strong flex items-center justify-between rounded-full px-4 py-2.5 sm:px-6">
+      <div
+        className={`mx-auto w-full max-w-6xl px-4 transition-all duration-500 sm:px-6 ${
+          scrolled ? "mt-1.5" : "mt-3"
+        }`}
+      >
+        <nav
+          className={`glass-strong flex items-center justify-between rounded-full px-4 transition-all duration-500 sm:px-6 ${
+            scrolled ? "py-1.5 shadow-glow-sm" : "py-2.5"
+          }`}
+        >
           <Link href="/" className="flex items-center" onClick={() => setOpen(false)} aria-label="لولو — الرئيسية">
             <Image
               src={logo}
               alt="لولو"
               priority
-              className="h-9 w-auto sm:h-11"
+              className={`w-auto transition-all duration-500 ${
+                scrolled ? "h-8 sm:h-9" : "h-9 sm:h-11"
+              }`}
             />
           </Link>
 

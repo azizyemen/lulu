@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { sections, groupLabels, Section } from "@/data/sections";
 import Icon from "@/components/Icon";
+import { Reveal } from "@/components/Reveal";
 
 const groups: Section["group"][] = ["worship", "organize", "growth", "inspire"];
 
@@ -8,19 +9,21 @@ export default function SectionsExplorer() {
   return (
     <div className="space-y-10">
       {groups.map((g) => (
-        <section key={g}>
-          <h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold text-rose-700">
-            <span className="h-5 w-1 rounded-full bg-gradient-to-b from-rose-400 to-gold-400" />
-            {groupLabels[g]}
-          </h3>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {sections
-              .filter((s) => s.group === g)
-              .map((s) => (
-                <SectionTile key={s.href} section={s} />
-              ))}
-          </div>
-        </section>
+        <Reveal key={g}>
+          <section>
+            <h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold text-rose-700">
+              <span className="h-5 w-1 rounded-full bg-gradient-to-b from-rose-400 to-gold-400" />
+              {groupLabels[g]}
+            </h3>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {sections
+                .filter((s) => s.group === g)
+                .map((s) => (
+                  <SectionTile key={s.href} section={s} />
+                ))}
+            </div>
+          </section>
+        </Reveal>
       ))}
     </div>
   );
@@ -31,7 +34,7 @@ function SectionTile({ section }: { section: Section }) {
     <div
       className={`group relative flex h-full flex-col gap-2 overflow-hidden rounded-3xl border p-4 transition-all duration-500 ${
         section.ready
-          ? "glass glass-hover border-white/60"
+          ? "glass glass-hover shine border-white/60"
           : "border-rose-100/60 bg-white/30"
       }`}
     >
